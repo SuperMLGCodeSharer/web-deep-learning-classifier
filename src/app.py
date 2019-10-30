@@ -11,6 +11,7 @@ from flask import Flask
 import requests
 import torch
 import json
+import PIL
 
 with open("src/config.yaml", 'r') as stream:
     APP_CONFIG = yaml.full_load(stream)
@@ -59,6 +60,12 @@ def upload_file():
     else:
         bytes = flask.request.files['file'].read()
         img = load_image_bytes(bytes)
+    
+    img_pil = PIL.Image.open(io.BytesIO(bytes)).resize((512, 384), PIL.Image.ANTIALIAS)
+    imgByteArr = BytesIO()
+    roiImg.save(imgByteArr, format='JPG')
+    img = load_image_bytes(imgByteArr.getvalue())
+    
     res = predict(img)
     return flask.jsonify(res)
 
