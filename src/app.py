@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 
 def load_model(path=".", model_name="model.pkl"):
-    learn = load_learner(path, fname=model_name)
+    learn = load_learner(path)
     return learn
 
 
