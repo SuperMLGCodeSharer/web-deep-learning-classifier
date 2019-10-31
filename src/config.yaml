@@ -3,7 +3,7 @@ description: Classify trash / recyclables images using deep learning
 about:
 
 
-  This is a Trash / Recyclables Images Classifier using Deep Learning built on top of Pytorch.
+  This is a Trash / Recyclables Images Classifier using Deep Learning built on top of Pytorch & FastAI.
 
 
   The project was built originally by [Nidhin Pattaniyil](https://npatta01.github.io)
