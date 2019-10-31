@@ -7,20 +7,25 @@ about:
 
 
   The project was built originally by [Nidhin Pattaniyil](https://npatta01.github.io)
-  and [Reshama Shaikh](https://reshamas.github.io) and has been forked and is being used by Aritro Saha.
+  
+  and [Reshama Shaikh](https://reshamas.github.io) for a food classifier, but has been 
+  
+  forked and is being used by [Aritro Saha / Axiumin](https://github.com/Axiumin) to create a Trash / Recyclables Image Classifier. 
+  
+  However, this is not the full version, but a test of how this would work in the real product.
 
 
 
-code: https://github.com/npatta01/web-deep-learning-classifier
+code: https://github.com/SuperMLGCodeSharer/web-deep-learning-classifier
 
 sampleImages:
-  - name: lasagne
-    url: https://upload.wikimedia.org/wikipedia/commons/b/ba/Lasagne_-_stonesoup.jpg
-  - name: sushi
-    url: https://upload.wikimedia.org/wikipedia/commons/6/60/Sushi_platter.jpg
-  - name: waffles
-    url: https://upload.wikimedia.org/wikipedia/commons/5/5b/Waffles_with_Strawberries.jpg
+  - name: cardboard box
+    url: https://www.stormtrading.co.uk/ekmps/shops/stgltd/images/large-double-wall-24x18x18-removal-storage-cardboard-boxes-11413-p.jpg
+  - name: glass bottle
+    url: https://5.imimg.com/data5/MM/UP/MY-40810582/750-ml-wine-bottle-clear-glass-500x500.jpg
+  - name: plastic bottle
+    url: https://4.imimg.com/data4/EU/YB/MY-6282801/normal-plastic-bottle-500x500.jpg
   - name: eggplant (not in training data)
     url: https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Solanum_melongena_24_08_2012_%281%29.JPG/1280px-Solanum_melongena_24_08_2012_%281%29.JPG
-  - name: table (not in training & not a food)
+  - name: table (not in training)
     url: https://image.shutterstock.com/image-photo/brown-light-wooden-round-dining-260nw-588358070.jpg 
