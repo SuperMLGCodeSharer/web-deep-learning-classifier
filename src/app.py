@@ -20,7 +20,7 @@ app = Flask(__name__)
 
 
 def load_model(path=".", model_name="model.pkl"):
-    learn = load_learner(path, fname=model_name)
+    learn = load_learner(path)
     return learn
 
 
@@ -57,13 +57,17 @@ def upload_file():
     if flask.request.method == 'GET':
         url = flask.request.args.get("url")
         img = load_image_url(url)
+        response = requests.get(url)
+        bytes = io.BytesIO(response.content)
     else:
         bytes = flask.request.files['file'].read()
         img = load_image_bytes(bytes)
-    
-    img_pil = PIL.Image.open(io.BytesIO(bytes)).resize((512, 384), PIL.Image.ANTIALIAS)
+        bytes = io.BytesIO(bytes)
+    global img_pil
+    img_pil = PIL.Image.open(bytes)
+    img_pil = img_pil.resize((512, 384), PIL.Image.ANTIALIAS)
     imgByteArr = BytesIO()
-    roiImg.save(imgByteArr, format='JPG')
+    img_pil.save(imgByteArr, format='JPEG')
     img = load_image_bytes(imgByteArr.getvalue())
     
     res = predict(img)
