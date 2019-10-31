@@ -63,7 +63,7 @@ def upload_file():
     
     img_pil = PIL.Image.open(io.BytesIO(bytes)).resize((512, 384), PIL.Image.ANTIALIAS)
     imgByteArr = BytesIO()
-    roiImg.save(imgByteArr, format='JPG')
+    img_pil.save(imgByteArr, format='JPG')
     img = load_image_bytes(imgByteArr.getvalue())
     
     res = predict(img)
