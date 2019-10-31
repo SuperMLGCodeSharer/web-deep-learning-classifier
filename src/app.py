@@ -60,8 +60,9 @@ def upload_file():
     else:
         bytes = flask.request.files['file'].read()
         img = load_image_bytes(bytes)
-    
-    img_pil = PIL.Image.open(io.BytesIO(bytes)).resize((512, 384), PIL.Image.ANTIALIAS)
+    global img_pil
+    img_pil = PIL.Image.open(io.BytesIO(bytes))
+    img_pil = img_pil.resize((512, 384), PIL.Image.ANTIALIAS)
     imgByteArr = BytesIO()
     img_pil.save(imgByteArr, format='JPEG')
     img = load_image_bytes(imgByteArr.getvalue())
