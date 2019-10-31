@@ -57,6 +57,8 @@ def upload_file():
     if flask.request.method == 'GET':
         url = flask.request.args.get("url")
         img = load_image_url(url)
+        response = requests.get(url)
+        bytes = io.BytesIO(response.content)
     else:
         bytes = flask.request.files['file'].read()
         img = load_image_bytes(bytes)
