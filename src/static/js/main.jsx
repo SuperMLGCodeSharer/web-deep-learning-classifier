@@ -52,6 +52,10 @@ class About extends React.Component {
                 <h1>About</h1>
                 <ReactMarkdown source={window.APP_CONFIG.about}/>
             </div>
+            <div>
+                <h1>Index of Items</h1>
+                <ReactMarkdown source={window.APP_CONFIG.index}/>
+            </div>
         );
     }
 }
