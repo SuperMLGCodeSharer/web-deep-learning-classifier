@@ -12,6 +12,7 @@ import requests
 import torch
 import json
 import PIL
+import base64
 
 with open("src/config.yaml", 'r') as stream:
     APP_CONFIG = yaml.full_load(stream)
@@ -56,9 +57,13 @@ def predict(img, n: int = 3) -> Dict[str, Union[str, List]]:
 def upload_file():
     if flask.request.method == 'GET':
         url = flask.request.args.get("url")
-        img = load_image_url(url)
-        response = requests.get(url)
-        bytes = io.BytesIO(response.content)
+        if url != None:
+            img = load_image_url(url)
+            response = requests.get(url)
+            bytes = BytesIO(response.content)
+        else:
+            base_sixtyfour = flask.request.args.get("base64")
+            bytes = BytesIO(base64.b64decode(base_sixtyfour))
     else:
         bytes = flask.request.files['file'].read()
         img = load_image_bytes(bytes)
