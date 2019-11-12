@@ -47,14 +47,9 @@ class About extends React.Component {
 // Use the render function to return JSX component
     render() {
         return (
-
             <div>
                 <h1>About</h1>
                 <ReactMarkdown source={window.APP_CONFIG.about}/>
-            </div>
-            <div>
-                <h1>Index of Items</h1>
-                <ReactMarkdown source={window.APP_CONFIG.index}/>
             </div>
         );
     }
