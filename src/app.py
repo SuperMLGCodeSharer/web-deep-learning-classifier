@@ -61,9 +61,6 @@ def upload_file():
             img = load_image_url(url)
             response = requests.get(url)
             bytes = BytesIO(response.content)
-        else:
-            base_sixtyfour = flask.request.args.get("base64")
-            bytes = BytesIO(base64.b64decode(base_sixtyfour))
     else:
         bytes = flask.request.files['file'].read()
         img = load_image_bytes(bytes)
@@ -77,6 +74,24 @@ def upload_file():
     
     res = predict(img)
     return flask.jsonify(res)
+
+
+@app.route('/api/classify_base', methods=['POST'])
+def upload_file_base_SF():
+    req_data = request.json()
+    base_sixtyfour_data = req_data['base64']
+    
+    bytes = io.BytesIO(base64.b64decode(data))
+    global img_pil
+    img_pil = PIL.Image.open(bytes)
+    img_pil = img_pil.resize((512, 384), PIL.Image.ANTIALIAS)
+    imgByteArr = BytesIO()
+    img_pil.save(imgByteArr, format='JPEG')
+    img = load_image_bytes(imgByteArr.getvalue())
+    
+    res = predict(img)
+    return flask.jsonify(res)
+    
 
 
 @app.route('/api/classes', methods=['GET'])
