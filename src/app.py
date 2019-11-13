@@ -76,14 +76,20 @@ def upload_file():
     return flask.jsonify(res)
 
 
-@app.route('/api/classify_base', methods=['POST'])
+@app.route('/api/classify_base', methods=['POST', 'GET'])
 def upload_file_base_SF():
+    if flask.request.method == 'GET':
+        abort(400)
     req_data = flask.request.json
     base_sixtyfour_data = req_data['base64']
     if (base_sixtyfour_data == None):
         flask.abort(400)
+        
+    try:
+        bytes = io.BytesIO(base64.b64decode(base_sixtyfour_data))
+    except:
+        flask.abort(400)
     
-    bytes = io.BytesIO(base64.b64decode(base_sixtyfour_data))
     global img_pil
     img_pil = PIL.Image.open(bytes)
     img_pil = img_pil.resize((512, 384), PIL.Image.ANTIALIAS)
