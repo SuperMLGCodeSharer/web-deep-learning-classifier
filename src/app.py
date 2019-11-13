@@ -83,7 +83,7 @@ def upload_file_base_SF():
     if (base_sixtyfour_data == None):
         flask.abort(400)
     
-    bytes = io.BytesIO(base64.b64decode(data))
+    bytes = io.BytesIO(base64.b64decode(base_sixtyfour_data))
     global img_pil
     img_pil = PIL.Image.open(bytes)
     img_pil = img_pil.resize((512, 384), PIL.Image.ANTIALIAS)
