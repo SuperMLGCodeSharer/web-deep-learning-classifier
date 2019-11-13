@@ -78,8 +78,10 @@ def upload_file():
 
 @app.route('/api/classify_base', methods=['POST'])
 def upload_file_base_SF():
-    req_data = flask.request.json()
+    req_data = flask.request.json
     base_sixtyfour_data = req_data['base64']
+    if (base_sixtyfour_data == None):
+        flask.abort(400)
     
     bytes = io.BytesIO(base64.b64decode(data))
     global img_pil
