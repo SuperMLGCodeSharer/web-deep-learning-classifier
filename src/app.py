@@ -7,7 +7,7 @@ from io import BytesIO
 from typing import List, Dict, Union, ByteString, Any
 import os
 import flask
-from flask import Flask
+from flask import Flask, abort
 import requests
 import torch
 import json
@@ -83,12 +83,12 @@ def upload_file_base_SF():
     req_data = flask.request.json
     base_sixtyfour_data = req_data['base64']
     if (base_sixtyfour_data == None):
-        flask.abort(400)
+        abort(400)
         
     try:
         bytes = io.BytesIO(base64.b64decode(base_sixtyfour_data))
     except:
-        flask.abort(400)
+        abort(400)
     
     global img_pil
     img_pil = PIL.Image.open(bytes)
