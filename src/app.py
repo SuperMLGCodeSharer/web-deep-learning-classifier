@@ -88,6 +88,7 @@ def upload_file_base_SF():
     try:
         bytes = io.BytesIO(base64.b64decode(base_sixtyfour_data))
     except:
+        print("Couldn't convert base64 to byte stream")
         abort(400)
     
     global img_pil
