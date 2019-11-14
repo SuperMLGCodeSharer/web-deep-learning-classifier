@@ -85,6 +85,8 @@ def upload_file_base_SF():
     if (base_sixtyfour_data == None):
         abort(400)
         
+    print(base_sixtyfour_data)
+        
     try:
         bytes = io.BytesIO(base64.b64decode(base_sixtyfour_data))
     except:
