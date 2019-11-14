@@ -81,11 +81,14 @@ def upload_file_base_SF():
     if flask.request.method == 'GET':
         abort(400)
     req_data = flask.request.json
+    if ('base64' not in req_data):
+        print("Couldn't extract data from json")
+        abort(400)
+
     base_sixtyfour_data = req_data['base64']
     if (base_sixtyfour_data == None):
+        print("Couldn't extract data from json")
         abort(400)
-        
-    print(base_sixtyfour_data)
         
     try:
         bytes = io.BytesIO(base64.b64decode(base_sixtyfour_data))
@@ -94,7 +97,13 @@ def upload_file_base_SF():
         abort(400)
     
     global img_pil
-    img_pil = PIL.Image.open(bytes)
+
+    try:
+        img_pil = PIL.Image.open(bytes)
+    except:
+        print("Couldn't convert base64 to PIL image")
+        abort(400)
+    
     img_pil = img_pil.resize((512, 384), PIL.Image.ANTIALIAS)
     imgByteArr = BytesIO()
     img_pil.save(imgByteArr, format='JPEG')
